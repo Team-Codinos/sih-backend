@@ -27,5 +27,5 @@ app.use('/auth',authRoute);
 
 
 
-app.listen(6905,()=>{console.log("The server is listening on 6905");});
+app.listen(parseInt(process.env.PORT),()=>{console.log("The server is listening on 6905");});
 
