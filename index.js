@@ -21,7 +21,9 @@ app.use(express.json());
 //route middleware
 app.use('/auth',authRoute);
 
-
+app.get('/',(req,res)=> {
+    req.setEncoding("Hoiiii")
+});
 
 
 
