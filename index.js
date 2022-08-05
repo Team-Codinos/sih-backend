@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 // Route imports
 const authRoute = require('./routes/auth');
-// const postRoute= require('./routes/posts');
 
 dotenv.config();
 
@@ -24,4 +23,4 @@ app.get('/', (req, res) => {
 });
 
 
-app.listen(parseInt(process.env.PORT), () => { console.log("The server is listening on 6905"); });
+app.listen(parseInt(process.env.PORT), () => { console.log(`The server is listening on ${process.env.PORT}`); });
