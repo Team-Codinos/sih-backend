@@ -10,7 +10,7 @@ const validate = require("../validation"); //your exports can be like this OR
 router.post("/register", async (req, res) => {
   //validate beofre adding the user
   const { error } = validate.registerValidation(req.body); //left hand said is also called destruction btw
-  if (error) return res.status(400).json(error.details[0].message);
+  if (error) return res.status(400).json({"error":error.details[0].message});
 
   //once you make sure everything is valid check if the user already exists
   const emailExist =await User.findOne({email:req.body.email});
@@ -33,14 +33,14 @@ router.post("/register", async (req, res) => {
     res.send(savedUser._id);
   } catch (error) {
     console.log(error);
-    res.status(401).send(error.toString());
+    res.status(401).json({"error":error.toString()});
   }
 });
 
 router.post("/login",async (req, res) => {
       //validate beofre adding the user
   const { error } = validate.loginValidation(req.body); //left hand said is also called destruction btw
-  if (error) return res.status(400).json(error.details[0].message);
+  if (error) return res.status(400).json({"error":error.details[0].message});
 
     //once you make sure everything is valid check if the user exists
     const currentuser =await User.findOne({email:req.body.email});
