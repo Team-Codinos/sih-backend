@@ -1,23 +1,19 @@
 const router = require("express").Router();
-const state_wise_dropout = require("../../model/dropout/state_wise_drop_out");
-const total_dropout = require("../../model/dropout/total_drop_out");
+const primary_enrollment = require("../../model/enrollment/state_wise_primary_enrollment");
 
-router.post("/", async (req, res) => {
-    console.log("POST --> /dropout");
+router.post('/', async (req, res) => {
+    console.log("POST --> /pass-fail");
 
-    //SET DEFAULTS
-    const fromYear = req.body.from || 2000;
-    const toYear = req.body.to || 2022;
     const state = req.body.state;
+    console.log(state);
 
     let queryResult = null;
 
     if (state) {
         // STATE-WISE DATA
         try {
-            queryResult = await state_wise_dropout.find({
-                State: state,
-                year: { $gte: fromYear, $lte: toYear }
+            queryResult = await primary_enrollment.find({
+                State: state
             });
 
         } catch (error) {
@@ -28,9 +24,7 @@ router.post("/", async (req, res) => {
     else {
         // NATION-WISE DATA
         try {
-            queryResult = await total_dropout.find({
-                year: { $gte: fromYear, $lte: toYear }
-            });
+            queryResult = await primary_enrollment.find();
 
         } catch (error) {
             console.log(error);
@@ -41,21 +35,24 @@ router.post("/", async (req, res) => {
     if (queryResult) {
         let boys = [];
         let girls = [];
+        let totalResult = [];
 
         queryResult.forEach((object) => {
-            boys.push(object.BOYS);
-            girls.push(object.GIRLS);
+            boys.push(object.Boys);
+            girls.push(object.Girls);
+            totalResult.push(object.Total);
         });
 
         return res.status(200).json({
             boys: boys,
-            girls: girls
+            girls: girls,
+            total: totalResult
         });
+
     }
     else {
         return res.status(404).json({ error: "Result not found" });
     }
-
 });
 
-module.exports = router; 
+module.exports = router;
