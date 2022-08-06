@@ -9,10 +9,10 @@ const primaryEnrollmentRoute = require('./data/primary_enrollment');
 
 
 //ASSIGNING APPROPRIATE ROUTES
-router.use("/pass-fail", passFailRoute);
+router.use("/pass-fail-rate", passFailRoute);
 router.use("/literacy-rate", literacyRoute);
-router.use("/dropouts", dropoutRoute);
-router.use("/primary-enrollment", primaryEnrollmentRoute);
+router.use("/dropout-rate", dropoutRoute);
+router.use("/primary-enrollment-rate", primaryEnrollmentRoute);
 
 
 module.exports = router;
