@@ -3,7 +3,7 @@ const pass_fail_rates = require("../../model/pass-fail/pass_fail_rates");
 const state_wise_pass_fail_rates = require("../../model/pass-fail/state_wise_pass_fail_rates");
 
 
-router.post("/pass-fail", async (req, res) => {
+router.post("/", async (req, res) => {
   console.log("POST --> /pass-fail");
 
   //SET DEFAULTS
