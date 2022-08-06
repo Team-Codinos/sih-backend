@@ -1,8 +1,7 @@
 const router = require("express").Router();
 const verifyJWT = require("../verifyJWT");
-const Pass_fail_rate = require("../model/pass_fail_rates");
-const state_wise_pass_fail_rates = require("../model/state_wise_pass_fail_rates");
-const pass_fail_rates = require("../model/pass_fail_rates");
+const state_wise_pass_fail_rates = require("../model/pass-fail/state_wise_pass_fail_rates");
+const pass_fail_rates = require("../model/pass-fail/pass_fail_rates");
 
 router.get("/pass-fail", async (req, res) => {
   console.log("GET --> /pass-fail");
