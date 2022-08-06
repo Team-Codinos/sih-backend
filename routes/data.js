@@ -3,7 +3,7 @@ const verifyJWT = require("../verifyJWT");
 const state_wise_pass_fail_rates = require("../model/pass-fail/state_wise_pass_fail_rates");
 const pass_fail_rates = require("../model/pass-fail/pass_fail_rates");
 
-router.get("/pass-fail", async (req, res) => {
+router.post("/pass-fail", async (req, res) => {
   console.log("GET --> /pass-fail");
   //SET DEFAULTS
   req.body.from = req.body.from != null ? req.body.from : 2000;
