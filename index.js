@@ -29,5 +29,4 @@ app.get('/', (req, res) => {
 app.use('/data',dataRoute);
 
 
-
 app.listen(parseInt(process.env.PORT), () => { console.log(`The server is listening on ${process.env.PORT}`); });
