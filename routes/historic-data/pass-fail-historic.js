@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
 
     } catch (error) {
       console.log(error);
-      return res.status(500).json({ error: "Databse error" });
+      return res.status(500).json({ error: "Database error" });
     }
   } else {
     // NATION-WISE DATA
@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
 
     } catch (error) {
       console.log(error);
-      return res.status(500).json({ error: "Databse error" });
+      return res.status(500).json({ error: "Database error" });
     }
   }
 
