@@ -1,9 +1,9 @@
 const router = require("express").Router();
 
 //ROUTE IMPORTS
-const passFailRoute = require('./data/pass-fail');
-const literacyRoute=require('./data/literacy');
-const dropoutRoute = require('./data/dropouts_route');
+const passFailRoute = require('./pass-fail-historic');
+const literacyRoute=require('./literacy-historic');
+const dropoutRoute = require('./dropouts-historic');
 
 
 
@@ -14,3 +14,6 @@ router.use("/dropout-rate",dropoutRoute);
 
 
 module.exports = router;
+
+
+

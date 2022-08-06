@@ -3,7 +3,7 @@ const state_wise_dropout = require("../../model/dropout/state_wise_drop_out");
 const total_dropout = require("../../model/dropout/total_drop_out");
 
 router.post("/", async (req, res) => {
-    console.log("POST --> /dropout");
+    console.log("POST -->/histroic-data/dropout");
 
     //SET DEFAULTS
     const fromYear = req.body.from || 2000;

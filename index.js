@@ -8,7 +8,8 @@ app.use(cors());
 
 // Route imports
 const authRoute = require('./routes/auth');
-const dataRoute=require(`./routes/data`);
+const historicDataRoute=require(`./routes/historic-data/historic_data`);
+const stateDataRoute =require('./routes/state-data/state_data');
 
 dotenv.config();
 
@@ -21,12 +22,14 @@ app.use(express.json());
 
 // Route middleware
 app.use('/auth', authRoute);
+app.use('/historic-data',historicDataRoute);
+app.use('/state-data',stateDataRoute);
+
 
 app.get('/', (req, res) => {
     res.send("Hoiiii")
 });
 
-app.use('/data',dataRoute);
 
 
 

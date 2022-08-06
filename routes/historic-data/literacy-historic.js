@@ -4,7 +4,7 @@ const total_literacy_rate = require("../../model/literacy_rate/total_literacy_ra
 
 
 router.post("/", async (req, res) => {
-    console.log("POST --> /pass-fail");
+    console.log("POST --> /historic-data/pass-fail");
     //SET DEFAULTS
     req.body.from = req.body.from != null ? req.body.from : 2000;
     req.body.to = req.body.to != null ? req.body.to : 2022;

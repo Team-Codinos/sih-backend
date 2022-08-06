@@ -4,7 +4,7 @@ const state_wise_pass_fail_rates = require("../../model/pass-fail/state_wise_pas
 
 
 router.post("/", async (req, res) => {
-  console.log("POST --> /pass-fail");
+  console.log("POST --> /historic-data/pass-fail");
 
   //SET DEFAULTS
   req.body.from = req.body.from != null ? req.body.from : 2000;
