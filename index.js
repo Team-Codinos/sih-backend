@@ -4,14 +4,11 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-app.use(cors(
-    {
-        exposedHeaders:['auth-token']
-    }
-));
+app.use(cors());
 
 // Route imports
 const authRoute = require('./routes/auth');
+const dataRoute=require(`./routes/data`);
 
 dotenv.config();
 
@@ -28,6 +25,9 @@ app.use('/auth', authRoute);
 app.get('/', (req, res) => {
     res.send("Hoiiii")
 });
+
+app.use('/data',dataRoute);
+
 
 
 app.listen(parseInt(process.env.PORT), () => { console.log(`The server is listening on ${process.env.PORT}`); });
