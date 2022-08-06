@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
-const { collection } = require("./User");
 
 const pass_fail_rates = new mongoose.Schema(
   {
-    year: {
+    YEAR: {
       type: Number,
     },
     STANDARD: {
