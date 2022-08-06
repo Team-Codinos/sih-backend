@@ -8,7 +8,8 @@ app.use(cors());
 
 // Route imports
 const authRoute = require('./routes/auth');
-const dataRoute=require(`./routes/data`);
+const dataRoute = require(`./routes/data`);
+const dropoutRoute = require('./routes/state_wise_dropout_route');
 
 dotenv.config();
 
@@ -26,7 +27,8 @@ app.get('/', (req, res) => {
     res.send("Hoiiii")
 });
 
-app.use('/data',dataRoute);
+app.use('/data', dataRoute);
 
+app.use(dropoutRoute);
 
 app.listen(parseInt(process.env.PORT), () => { console.log(`The server is listening on ${process.env.PORT}`); });
