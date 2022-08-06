@@ -27,15 +27,15 @@
 const router = require("express").Router();
 
 //ROUTE IMPORTS
-// const passFailRoute = require('./pass-fail-state');
-// const literacyRoute=require('./literacy-state');
+const passFailRoute = require('./pass-fail-state');
+const literacyRoute=require('./literacy-state');
 const dropoutRoute = require('./dropouts-state');
 
 
 
 //ASSIGNING APPROPRIATE ROUTES
-// router.use("/pass-fail-rate",passFailRoute);
-// router.use("/literacy-rate",literacyRoute);
+router.use("/pass-fail-rate",passFailRoute);
+router.use("/literacy-rate",literacyRoute);
 router.use("/dropout-rate",dropoutRoute);
 
 
