@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const state_wise_drop_out = new mongoose.Schema(
   {
     year: {
