@@ -9,9 +9,9 @@ router.post('/', async (req, res) => {
         const resultMap = {};
 
         queryResult.forEach((obj) => {
-            resultMap[obj.State] = {
-                boys: obj.BOYS,
-                girls: obj.GIRLS
+            resultMap[obj.state] = {
+                boys: obj.boys,
+                girls: obj.girls
             };
         });
 

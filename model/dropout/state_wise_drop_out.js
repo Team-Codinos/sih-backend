@@ -4,16 +4,19 @@ const state_wise_drop_out = new mongoose.Schema(
     year: {
       type: Number,
     },
-    BOYS: {
+    boys: {
       type: Number,
     },
-    GIRLS: {
+    girls: {
       type: Number,
     },
-    State:{
+    state:{
         type:String
+    },
+    standard:{
+      type:String
     }
   }
 );
 
-module.exports = mongoose.model("state_wise_drop_out",state_wise_drop_out,'state_wise_drop_out');
+module.exports = mongoose.model("state_wise_drop_out",state_wise_drop_out,'state_wise_dropout');
