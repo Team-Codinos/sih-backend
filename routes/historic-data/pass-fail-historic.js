@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const pass_fail_rates = require("../../model/pass-fail/pass_fail_rates");
 const state_wise_pass_fail_rates = require("../../model/pass-fail/state_wise_pass_fail_rates");
 
 
@@ -9,7 +8,7 @@ router.post("/", async (req, res) => {
   //SET DEFAULTS
   req.body.from = req.body.from != null ? req.body.from : 2000;
   req.body.to = req.body.to != null ? req.body.to : 2022;
-  req.body.standard = req.body.standard != null ? req.body.standard : "PRIM";
+  req.body.standard = req.body.standard != null ? req.body.standard : "prim";
 
   //IF STATE IS NULL IT DEFAULTS TO NATIONAL LEVEL STATS
   let queryResult = null;
@@ -19,9 +18,9 @@ router.post("/", async (req, res) => {
 
     try {
       queryResult = await state_wise_pass_fail_rates.find({
-        State: req.body.state,
+       state : req.body.state,
         year: { $gte: req.body.from, $lte: req.body.to },
-        STANDARD: req.body.standard,
+        standard: req.body.standard,
       });
 
     } catch (error) {
@@ -32,9 +31,9 @@ router.post("/", async (req, res) => {
     // NATION-WISE DATA
 
     try {
-      queryResult = await pass_fail_rates.find({
-        year: { $gte: req.body.from, $lte: req.body.to },
-        STANDARD: req.body.standard,
+      queryResult = await state_wise_pass_fail_rates.find({
+        year: 2022,
+        standard: req.body.standard,
       });
 
     } catch (error) {
@@ -48,8 +47,8 @@ router.post("/", async (req, res) => {
     let girls = [];
 
     queryResult.forEach((obj) => {
-      boys.push(obj.BOYS);
-      girls.push(obj.GIRLS);
+      boys.push(obj.boys);
+      girls.push(obj.girls);
     });
 
 

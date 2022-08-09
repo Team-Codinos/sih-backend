@@ -4,16 +4,16 @@ const state_wise_pass_fail_rates=new mongoose.Schema({
     year:{
         type:Number,
     },
-    State:{
+    state:{
         type:String
     },
-    STANDARD:{
+    standard:{
         type:String
     },
-    BOYS:{
+    boys:{
         type:Number
     },
-    GIRLS:{
+    girls:{
         type:Number
     }
 },);

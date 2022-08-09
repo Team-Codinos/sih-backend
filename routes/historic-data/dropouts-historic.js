@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const state_wise_dropout = require("../../model/dropout/state_wise_drop_out");
-const total_dropout = require("../../model/dropout/total_drop_out");
 
 router.post("/", async (req, res) => {
     console.log("POST -->/histroic-data/dropout");
@@ -16,7 +15,7 @@ router.post("/", async (req, res) => {
         // STATE-WISE DATA
         try {
             queryResult = await state_wise_dropout.find({
-                State: state,
+                state: state,
                 year: { $gte: fromYear, $lte: toYear }
             });
 
@@ -28,8 +27,9 @@ router.post("/", async (req, res) => {
     else {
         // NATION-WISE DATA
         try {
-            queryResult = await total_dropout.find({
-                year: { $gte: fromYear, $lte: toYear }
+            queryResult = await state_wise_dropout.find({
+                state:"Telangana",
+                year: 2022
             });
 
         } catch (error) {
@@ -43,8 +43,8 @@ router.post("/", async (req, res) => {
         let girls = [];
 
         queryResult.forEach((object) => {
-            boys.push(object.BOYS);
-            girls.push(object.GIRLS);
+            boys.push(object.boys);
+            girls.push(object.girls);
         });
 
         return res.status(200).json({

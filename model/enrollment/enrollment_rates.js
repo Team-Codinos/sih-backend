@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const state_wise_secondary_enrollment=new mongoose.Schema({
+const enrollment_rates=new mongoose.Schema({
     state:{
         type:String
     },
@@ -12,7 +12,10 @@ const state_wise_secondary_enrollment=new mongoose.Schema({
     },
     girls:{
         type:Number
+    },
+    standard:{
+        type:String
     }
 },);
 
-module.exports=mongoose.model('state_wise_secondary_enrollment',state_wise_secondary_enrollment,'state_wise_secondary_enrollment');
+module.exports=mongoose.model('enrollment_rates',enrollment_rates,'enrollment_rates');

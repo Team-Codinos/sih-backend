@@ -5,14 +5,17 @@ const state_wise_literacy_rate = new mongoose.Schema(
     year: {
       type: Number,
     },
-    BOYS: {
+    boys: {
       type: Number,
     },
-    GIRLS: {
+    girls: {
       type: Number,
     },
-    State:{
-        type:String
+    state:{
+        type:String,
+    },
+    standard:{
+      type:String,
     }
   }
 );
