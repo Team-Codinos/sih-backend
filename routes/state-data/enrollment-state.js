@@ -1,14 +1,13 @@
-const router = require("express").Router();
-const state_wise_dropout = require("../../model/dropout/state_wise_drop_out");
+const router = require('express').Router();
+const enrollment_rates = require("../../model/enrollment/enrollment_rates");
 
 router.post("/", async (req, res) => {
-    console.log("POST -->/state-data/dropout");
+    console.log("POST --> /state-data/enrollment-rate");
 
-    // SET DEFAULTS
     const year = req.body.year || 2000;
 
     try {
-        const queryResult = await state_wise_dropout.find({ year: year });
+        const queryResult = await enrollment_rates.find({ year: year });
         const standardsMap = {};
 
         standardsMap["prim"] = {};
@@ -23,11 +22,13 @@ router.post("/", async (req, res) => {
             };
         });
 
-        return res.status(200).json(standardsMap);
-
-    } catch (error) {
-        return res.status(500).json(error);
+        res.status(200).json(standardsMap);
     }
+    catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
+
 });
 
-module.exports = router; 
+module.exports = router;
