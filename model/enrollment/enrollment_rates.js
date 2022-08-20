@@ -2,19 +2,24 @@ const mongoose = require('mongoose');
 
 const enrollment_rates = new mongoose.Schema({
     state: {
-        type: String
+        type: String,
+        required: true
     },
     year: {
-        type: Number
+        type: Number,
+        required: true
     },
     boys: {
-        type: Number
+        type: Number,
+        required: true
     },
     girls: {
-        type: Number
+        type: Number,
+        required: true
     },
     standard: {
-        type: String
+        type: String,
+        required: true
     }
 },);
 
