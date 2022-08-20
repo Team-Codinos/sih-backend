@@ -14,6 +14,8 @@ The Technologies used to build Backend are:-
 - Express
 - CORS Policy
 
+<br>
+
 # Backend Documentation
 
 **API Base URL**: **https://mighty-spire-15674.herokuapp.com/**
@@ -26,6 +28,8 @@ The Technologies used to build Backend are:-
  - JsonWebToken
  - cors
  - Joi
+ - multer
+ - CsvtoJson
 
 For user authentication there are two routes:
  - [register](https://mighty-spire-15674.herokuapp.com/register) 
@@ -35,6 +39,8 @@ Endpoints can be hit like this:
  - https://mighty-spire-15674.herokuapp.com/register 
  - https://mighty-spire-15674.herokuapp.com/login
 
+<br>
+
 For JWT authentication, user request body will be:
 
     {
@@ -42,6 +48,8 @@ For JWT authentication, user request body will be:
 	    email: string,
 	    password: string,
     }
+    
+ <br>
 
 If JWT failed and user is not valid then error responses are as such:
 
@@ -51,9 +59,13 @@ If JWT failed and user is not valid then error responses are as such:
 	    errMsg: "User is not valid"
     });
 
+<br>
+
 If user is valid but JWT token failed to be verified, then error response:
 
     res.status(400).send('Invalid Token');
+
+<br>
 
 If JWT succeeded and a JWT token is generated, success response as such:
 
@@ -62,6 +74,8 @@ If JWT succeeded and a JWT token is generated, success response as such:
 	    id: currentuser._id,
 	    errMsg: null
     });
+
+<br>
 
 After login, user has two kinds of routes to navigate to:
 
@@ -86,6 +100,8 @@ For state-data routes, required parameters are:
 
     { year: 2012 }    // 2000-2022
 
+<br>
+
 For historic-data, required parameters are:
 
     {
@@ -97,6 +113,7 @@ For historic-data, required parameters are:
 
 If state is not mentioned in the payload, the result will be fetched choosing Telangana as state.
 
+<br>
 
 For state data, the response will be as such:
 
@@ -115,7 +132,8 @@ For state data, the response will be as such:
         .
         .
         .
-        "second": {
+    },
+    "second": {
         "Andhra Pradesh": {
           "boys": 149.1500511133867,
           "girls": 112.12740911347281,
@@ -129,7 +147,8 @@ For state data, the response will be as such:
         .
         .
         .
-         "tech": {
+    },
+    "tech": {
         "Andhra Pradesh": {
           "boys": 122.07672440191321,
           "girls": 142.58155703087033,
@@ -143,7 +162,9 @@ For state data, the response will be as such:
         .
         .
         .
-  
+     }
+
+<br>
 
 For historic-data, the response will be:
 
@@ -155,4 +176,49 @@ For historic-data, the response will be:
         120.2546346731755
       ]
     }
+    
+<br>
+
+There is a route called `upload-csv` to upload data from CSV files to MongoDB database.
+It is a dynamic route and it can be accessed as:
+
+ - https://mighty-spire-15674.herokuapp.com/:collection-name
+
+Here `collection-name` decides the MongoDB collection where the data is being uploaded to.
+
+<br>
+
+If the `collection-name` does not match with any of the collections in MongoDB, then response error is as such:
+
+    res.status(404).json({ error: "route does not exist" }); 
+
+This is route takes a `.csv` file as request parameter.
+
+<br>
+
+If any other type of file is sent from client other than `.csv` the following is error is the response:
+
+    res.status(401).json({ error: "file type unsupported" });
+
+<br> 
+
+If the data in CSV-file is not valid or does not contain all the necessary attributes:
+
+    res.status(401).json({ error: "invald headers" });
+
+<br> 
+
+In case of any Database failure:
+
+    res.status(500).json({ error: `DB Insert fail ${error.toString()}` }) 
+
+<br> 
+
+If the requested data is valid and data insertion was successful, then success response:
+
+    res.json({ message: `Inserted ${x} rows in ${y} collection` });
+
+Uploaded file will be deleted immediately after completion of the operation and response is sent.
+
+
 
