@@ -31,6 +31,7 @@ const passFailRoute = require('./pass-fail-state');
 const literacyRoute = require('./literacy-state');
 const dropoutRoute = require('./dropouts-state');
 const enrollmentRoute = require("./enrollment-state");
+const castewise = require("./caste_wise");
 
 
 
@@ -39,6 +40,7 @@ router.use("/pass-fail-rate", passFailRoute);
 router.use("/literacy-rate", literacyRoute);
 router.use("/dropout-rate", dropoutRoute);
 router.use("/enrollment-rate", enrollmentRoute);
+router.use("/castewise", castewise);
 
 
 module.exports = router;
