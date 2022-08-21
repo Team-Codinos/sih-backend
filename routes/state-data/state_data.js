@@ -34,7 +34,6 @@ const enrollmentRoute = require("./enrollment-state");
 const castewise = require("./caste_wise");
 
 
-
 //ASSIGNING APPROPRIATE ROUTES
 router.use("/pass-fail-rate", passFailRoute);
 router.use("/literacy-rate", literacyRoute);
