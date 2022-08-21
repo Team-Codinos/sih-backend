@@ -40,7 +40,7 @@ const je = [
   ];
 router.post("/dropout", async (req, res) => {
     console.log("POST --> staticcc wise data");
-    res.status(200).json(je)
+    res.status(200).json(je);
 });
 
 module.exports = router;

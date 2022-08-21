@@ -21,7 +21,7 @@ const staticRoute = require('./routes/static/static');
 dotenv.config();
 
 //mongo connect
-mongoose.connect("mongodb+srv://sahil:shashi@123@hack.4lz7k.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true }, () => {
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }, () => {
   console.log("Mongo Connection Success");
 });
 
@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
   res.send("Hoiiii");
 });
 
-app.listen(parseInt(4321), () => {
+app.listen(parseInt(process.env.PORT), () => {
   console.log(`The server is listening on ${process.env.PORT}`);
 });
 
