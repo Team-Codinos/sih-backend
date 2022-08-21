@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
   res.send("Hoiiii");
 });
 
-app.listen(parseInt(4321), () => {
+app.listen(parseInt(process.env.PORT), () => {
   console.log(`The server is listening on ${process.env.PORT}`);
 });
 
