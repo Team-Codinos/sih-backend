@@ -17,6 +17,7 @@ const historicDataRoute = require(`./routes/historic-data/historic_data`);
 const stateDataRoute = require("./routes/state-data/state_data");
 const uploadcsvRoute=require('./routes/upload_csv/upload_csv');
 const staticRoute = require('./routes/static/static');
+const exportsRoute=require('./routes/export-json/exports');
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use("/historic-data", historicDataRoute);
 app.use("/state-data", stateDataRoute);
 app.use("/upload-csv",uploadcsvRoute)
 app.use("/static",staticRoute)
+app.use('/exports',exportsRoute);
 
 
 app.get("/", (req, res) => {
