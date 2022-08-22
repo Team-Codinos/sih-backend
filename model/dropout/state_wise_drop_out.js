@@ -5,7 +5,7 @@ const state_wise_drop_out = new mongoose.Schema(
       type: Number,
       required: true
     },
-    boys: {
+    boys: {  
       type: Number,
       required: true
     },
