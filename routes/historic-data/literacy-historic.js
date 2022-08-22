@@ -2,7 +2,7 @@ const router = require("express").Router();
 const state_wise_literacy_rate = require("../../model/literacy_rate/state_wise_literacy_rate");
 
 
-router.post("/", async (req, res) => {
+router.post("/", async (req, res) => {  
   console.log("POST --> /historic-data/literacy-rate");
 
   //SET DEFAULTS
