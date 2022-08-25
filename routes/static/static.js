@@ -12,34 +12,34 @@ const {
   literacy,
 } = require("../constants");
 
-// router.post("/dropout", async (req, res) => {
-//   res.status(200).json(dropout);
-// });
+router.post("/dropout", async (req, res) => {
+  res.status(200).json(dropout);
+});
 
-// router.post("/lit", async (req, res) => {
-//   res.status(200).json(lit);
-// });
+router.post("/lit", async (req, res) => {
+  res.status(200).json(lit);
+});
 
-// router.post("/enro", async (req, res) => {
-//   console.log(enrollment.length);
-//   res.status(200).json(enrollment);
-// });
+router.post("/enro", async (req, res) => {
+  console.log(enrollment.length);
+  res.status(200).json(enrollment);
+});
 router.post("/gpi", async (req, res) => {
   res.status(200).json(gpi);
 });
 
-// router.post("/BarDropout", async (req, res) => {
-//   res.status(200).json(BarDropout);
-// });
+router.post("/BarDropout", async (req, res) => {
+  res.status(200).json(BarDropout);
+});
 
-// router.post("/enroll", async (req, res) => {
-//   console.log(enroll.length);
-//   res.status(200).json(enroll);
-// });
+router.post("/enroll", async (req, res) => {
+  console.log(enroll.length);
+  res.status(200).json(enroll);
+});
 
-// router.post("/literacy", async (req, res) => {
-//   res.status(200).json(literacy);
-// });
+router.post("/literacy", async (req, res) => {
+  res.status(200).json(literacy);
+});
 
 router.get("/dropout", async (req, res) => {
   const year = 2022;
