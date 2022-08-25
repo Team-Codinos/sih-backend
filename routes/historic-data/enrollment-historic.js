@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const enrollment_rates = require("../../model/enrollment/enrollment_rates");
+const enrollment_rates = require("../../model/old/enrollment/enrollment_rates");
 
 router.post("/", async (req, res) => {
     console.log("POST --> /historic-data/enrollment-rate");
@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
             let boys = [];
             let girls = [];
 
-            console.log(queryResult);
+            
 
             queryResult.forEach(obj => {
                 boys.push(obj.boys);

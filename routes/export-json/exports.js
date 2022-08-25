@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const fs = require("fs");
 const path = require("path");
-const state_wise_drop_out = require("../../model/dropout/state_wise_drop_out");
-const enrollment_rates = require("../../model/enrollment/enrollment_rates");
-const state_wise_literacy_rate = require("../../model/literacy_rate/state_wise_literacy_rate");
-const state_wise_pass_fail_rates = require("../../model/pass-fail/state_wise_pass_fail_rates");
+const state_wise_drop_out = require("../../model/old/dropout/state_wise_drop_out");
+const enrollment_rates = require("../../model/old/enrollment/enrollment_rates");
+const state_wise_literacy_rate = require("../../model/old/literacy_rate/state_wise_literacy_rate");
+const state_wise_pass_fail_rates = require("../../model/old/pass-fail/state_wise_pass_fail_rates");
 const { parse } = require("json2csv");
 
 router.get("/:route/:fileType", async (req, res) => {

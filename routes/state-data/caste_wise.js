@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const caste_wise = require("../../model/castewise/caste");
+const caste_wise = require("../../model/old/castewise/caste");
 
 router.post("/", async (req, res) => {
     console.log("POST --> caste wise data");

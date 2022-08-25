@@ -2,7 +2,7 @@ const router = require("express").Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require("../model/User");
-const validate = require("../validation"); //your exports can be like this OR
+const validate = require("../new-routes/Admin/validation"); //your exports can be like this OR
 // const {loginvalidation,registervalidation} = require('../validation'); //like this as you can only take required ones from the exports
 //  in order you want and the names you want
 

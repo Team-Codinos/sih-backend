@@ -18,6 +18,11 @@ const stateDataRoute = require("./routes/state-data/state_data");
 const uploadcsvRoute=require('./routes/upload_csv/upload_csv');
 const staticRoute = require('./routes/static/static');
 const exportsRoute=require('./routes/export-json/exports');
+const request = require("./model/Request/requesti");
+
+//new route imports
+const adminRoute=require('./new-routes/Admin/routes');
+const SchoolAdminRoute=require('./new-routes/SchoolAdmin/routes');
 
 dotenv.config();
 
@@ -36,6 +41,8 @@ app.use("/state-data", stateDataRoute);
 app.use("/upload-csv",uploadcsvRoute)
 app.use("/static",staticRoute)
 app.use('/exports',exportsRoute);
+app.use('/admin',adminRoute);
+app.use('/schooladmin',SchoolAdminRoute);
 
 
 app.get("/", (req, res) => {

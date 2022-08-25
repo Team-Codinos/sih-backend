@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const state_wise_pass_fail_rates = require("../../model/pass-fail/state_wise_pass_fail_rates");
+const state_wise_pass_fail_rates = require("../../model/old/pass-fail/state_wise_pass_fail_rates");
 
 
 router.post("/", async (req, res) => {

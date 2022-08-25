@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const state_wise_dropout = require("../../model/dropout/state_wise_drop_out");
+const state_wise_dropout = require("../../model/old/dropout/state_wise_drop_out");
 
 router.post("/", async (req, res) => {
     console.log("POST -->/histroic-data/dropout");

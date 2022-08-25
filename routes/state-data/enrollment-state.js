@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const enrollment_rates = require("../../model/enrollment/enrollment_rates");
+const enrollment_rates = require("../../model/old/enrollment/enrollment_rates");
 
 router.post("/", async (req, res) => {
     console.log("POST --> /state-data/enrollment-rate");

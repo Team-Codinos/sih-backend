@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const state_wise_literacy = require("../../model/literacy_rate/state_wise_literacy_rate");
+const state_wise_literacy = require("../../model/old/literacy_rate/state_wise_literacy_rate");
 
 router.post('/', async (req, res) => {
     const year = req.body.year || 2000;
