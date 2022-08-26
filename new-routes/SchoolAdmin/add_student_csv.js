@@ -36,7 +36,7 @@ function verifyObj(obj) {
 const upload = multer({ storage });
 
 router.post("/", upload.single("file"), async (req, res) => {
-    console.log(req);
+    console.log(req.file);
     if(!req.file && !req.file.filename)
         return res.status(400).json({"error":"file not found"});
 
