@@ -37,7 +37,7 @@ const upload = multer({ storage });
 
 router.post("/", upload.single("file"), async (req, res) => {
     console.log(req);
-    if(!req.file && !req.file.fileName)
+    if(!req.file && !req.file.filename)
         return res.status(400).json({"error":"file not found"});
 
   if (!req.file.filename.endsWith(".csv")) {
