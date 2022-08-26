@@ -35,7 +35,7 @@ router.options("/", (req, res) => {
 
 router.post("/", upload.single("file"), async (req, res) => {
     console.log(req.file.originalname);
-  if (!req.file && !req.file.filename) {
+  if (!req.file && !req.file.originalname) {
     console.log(1);
     return res.status(400).json({ error: "file not found" });
   }
