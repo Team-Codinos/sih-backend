@@ -23,6 +23,7 @@ const request = require("./model/Request/requesti");
 //new route imports
 const adminRoute=require('./new-routes/Admin/routes');
 const SchoolAdminRoute=require('./new-routes/SchoolAdmin/routes');
+const metricsRoute=require('./new-routes/metrics/metrics');
 
 dotenv.config();
 
@@ -41,15 +42,19 @@ app.use("/state-data", stateDataRoute);
 app.use("/upload-csv",uploadcsvRoute)
 app.use("/static",staticRoute)
 app.use('/exports',exportsRoute);
+
+
+//new routes
 app.use('/admin',adminRoute);
 app.use('/schooladmin',SchoolAdminRoute);
+app.use('/metrics',metricsRoute);
 
 
 app.get("/", (req, res) => {
   res.send("Hoiiii");
 });
 
-app.listen(parseInt(process.env.PORT), () => {
+app.listen(parseInt(process.env.PORT),'0.0.0.0', () => {
   console.log(`The server is list4ening on ${process.env.PORT}`);
 });
 

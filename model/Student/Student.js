@@ -8,8 +8,8 @@ const StudentSchema = new Schema({
     past_marks: {
         type: Number
     }, 
-    school_id: {
-        type: String
+    school_ids: {
+        type: [String]
     },
     standard: {
         type: Number,
@@ -22,12 +22,3 @@ const StudentSchema = new Schema({
 });
 
 module.exports = mongoose.model('Student', StudentSchema ,'Students');
-
-
-
-
-
-
-
-
-

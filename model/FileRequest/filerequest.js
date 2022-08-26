@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Requesti = new Schema({
+const FileRequest = new Schema({
     file_path:{
         type:String
     },
@@ -11,7 +11,7 @@ const Requesti = new Schema({
     
 });
 
-module.exports = mongoose.model('Requesti', Requesti,'Requesti');
+module.exports = mongoose.model('FileRequest', FileRequest,'FileRequest');
 
 
 

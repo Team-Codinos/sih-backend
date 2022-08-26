@@ -1,13 +1,12 @@
 const dropout = require('../../model/DropOuts/dropout');
-const dropout = require('../../model/DropOuts/dropout');
-const dropout = require('../../model/DropOuts/dropout');
 const Student = require('../../model/Student/Student');
+const verifyJWT = require('../../verifyJWT');
 
 const router=require('express').Router();
 
 
 
-router.delete('/drop-out-student', async (req,res)=>{
+router.delete('/',verifyJWT, async (req,res)=>{
     // Send year and student_id
 
     try {
