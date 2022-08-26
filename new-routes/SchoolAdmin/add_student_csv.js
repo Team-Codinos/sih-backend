@@ -33,7 +33,7 @@ router.options("/", (req, res) => {
   res.send("hehe");
 });
 
-router.post("/", verifyJWT, upload.single("file"), async (req, res) => {
+router.post("/", upload.single("file"), async (req, res) => {
     console.log(req.file.originalname);
   if (!req.file && !req.file.filename) {
     console.log(1);

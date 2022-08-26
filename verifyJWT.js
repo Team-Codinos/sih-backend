@@ -9,7 +9,7 @@ function verifyJWT(req, res, next) {
         req.user = verified;
         next();//a function to take you to the next middle ware
     } catch (error) {
-        res.status(400).send('Invalid Token');
+        res.status(402).send('Invalid Token');
     }
 
 }
