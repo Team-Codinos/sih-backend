@@ -8,6 +8,7 @@ app.use(
   cors({
     origin:"*",
     exposedHeaders: ["auth-token"],
+    preflightContinue:true
   })
 );
 
