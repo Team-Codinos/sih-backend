@@ -9,7 +9,7 @@ const StudentSchema = new Schema({
         type: Number
     }, 
     school_ids: {
-        type: [String]
+        type: String
     },
     standard: {
         type: Number,
@@ -17,6 +17,9 @@ const StudentSchema = new Schema({
     approval:{
         type:Boolean,
         default:false    
+    },
+    past_schools:{
+        type:[String]
     }
 
 });

@@ -8,6 +8,9 @@ const FileRequest = new Schema({
     from_id:{
         type:String
     },
+    approved:{
+        type:Boolean,
+    }
     
 });
 

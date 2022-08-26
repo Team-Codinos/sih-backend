@@ -6,10 +6,21 @@ const jwt = require("jsonwebtoken");
 const csvtojson = require("csvtojson");
 const fs = require("fs");
 const Student = require("../../model/Student/Student");
+const dropout = require("../../model/DropOuts/dropout");
 
 const router = require("express").Router();
 
 let fileName = "";
+
+function deleteFile() {
+  const fileLocation = path.join(__dirname, `uploads/${fileName}`);
+
+  fs.unlink(fileLocation, (err) => {
+    if (err) throw err;
+
+    console.log(`Deleted ${fileName} from uploads`);
+  });
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -22,8 +33,7 @@ const storage = multer.diskStorage({
 });
 
 function verifyObj(obj) {
-  if (obj["past_marks"] && obj["school_id"] && obj["standard"] && obj["name"])
-    return true;
+  if (obj["student_id"] && obj["year"]) return true;
   else return false;
 }
 
@@ -33,8 +43,8 @@ router.options("/", (req, res) => {
   res.send("hehe");
 });
 
-router.post("/", verifyJWT,upload.single("file"), async (req, res) => {
-    console.log(req.file.originalname);
+router.post("/", verifyJWT, upload.single("file"), async (req, res) => {
+  console.log(req.file.originalname);
   if (!req.file && !req.file.originalname) {
     return res.status(400).json({ error: "file not found" });
   }
@@ -46,10 +56,9 @@ router.post("/", verifyJWT,upload.single("file"), async (req, res) => {
   let decoded = jwt.decode(req.headers["auth-token"], { complete: true });
   let payload = decoded.payload;
 
-  if (!payload) return res.json({"error":error.toString()});
+  if (!payload) return res.send("nope");
 
   let from_id = payload["id"];
-  const school_id_admin=payload["school_id"];
 
   //convert that csv to json
   let csvdata = await csvtojson().fromFile(req.file.path);
@@ -57,28 +66,25 @@ router.post("/", verifyJWT,upload.single("file"), async (req, res) => {
 
   //verify the csv structure by verifying one instance of that json
   if (!verifyObj(csvdata[0])) {
-    // deleteFile(); // To delete the CSV-file that was received from client
+    deleteFile(); // To delete the CSV-file that was received from client
 
     return res.status(401).json({ error: "invald headers" });
   }
 
   csvdata.forEach(async (obj) => {
-    if(obj.school_ids==school_id_admin){
-    const a = new Student({
-      name: obj.name,
-      past_marks: obj.past_marks,
-      school_ids: [obj.school_id],
-      standard: obj.standard,
-      approval: false,
+    console.log(obj);
+    const a = new dropout({
+      student_id:obj.student_id,
+      // _id:obj._id,
+      year:obj.year
     });
-    
     try {
       const result = await a.save();
     } catch (error) {
       return res
-        .status(400)
+        .status(500)
         .json({ error: `DB Insert fail ${error.toString()}` });
-    }}
+    }
   });
 
   const FileRequest = new filerequest({
@@ -89,7 +95,7 @@ router.post("/", verifyJWT,upload.single("file"), async (req, res) => {
   await FileRequest.save();
 
   return res.json({
-    message: `Inserted ${csvdata.length} rows in collection`,
+    message: `Inserted ${csvdata.length} rows in dropouts collection `,
   });
 });
 

@@ -13,7 +13,7 @@ router.delete('/',verifyJWT, async (req,res)=>{
         let id=re.body.id;
         let student=await Student.findById(id);
         student.approval=false;
-
+        
         let dropout=new dropout({
             student_id:student._id,
             year:req.body.year

@@ -2,3 +2,4 @@ node_modules
 .env
 routes\upload_csv\uploads
 a.html
+new-routes\SchoolAdmin\uploads

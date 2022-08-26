@@ -1,10 +1,8 @@
-const router=require('express').Router();
-const jwt = require('jsonwebtoken');
+const router = require("express").Router();
 const bcrypt = require('bcryptjs');
+const school_admin = require("../../model/SchoolAdmin/school_admin");
 const validate=require('./validation');
 
-const Administrator = require("../../model/Administrator/Administrator");
-const school_admin = require('../../model/SchoolAdmin/school_admin');
 
 router.post("/", async (req, res) => {
     //validate beofre adding the user
@@ -18,7 +16,7 @@ router.post("/", async (req, res) => {
       });
   
     //once you make sure everything is valid check if the user already exists
-    const emailExist = await Administrator.findOne({ email: req.body.email });
+    const emailExist = await school_admin.findOne({ email: req.body.email });
   
     if (emailExist)
       return res.status(403).json({
@@ -33,7 +31,8 @@ router.post("/", async (req, res) => {
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
   
   
-    const user = new Administrator({
+    const user = new school_admin({
+      schoolid: req.body.schoolid,
       email: req.body.email,
       password: hashedPassword,
     });

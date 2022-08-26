@@ -45,7 +45,8 @@ router.post("/", async (req, res) => {
   res.status(200).header('auth-token', token).json({
     auth: true,
     id: currentuser._id,
-    errMsg: null
+    errMsg: null,
+    school_id:currentuser.schoolid
   });
 });
 

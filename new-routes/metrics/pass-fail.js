@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
   } catch (error) {
     console.log(error.toString());
     return res.status(400).json({ message: "nope" });
-  }
+  } 
   let results = {
     primary: (p / tot) * 100,
     secondary: (s / tot) * 100,
