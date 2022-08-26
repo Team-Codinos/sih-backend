@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const school_admin = require("../../model/SchoolAdmin/school_admin");
 const validate=require('./validation');
 
+
 router.post("/", async (req, res) => {
     //validate beofre adding the user
     const { error } = validate.registerValidation(req.body); //left hand said is also called destruction btw

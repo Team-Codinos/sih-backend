@@ -35,6 +35,10 @@ function verifyObj(obj) {
 
 const upload = multer({ storage });
 
+router.options('/',(req,res)=>{
+    res.send('hehe');
+});
+
 router.post("/",verifyJWT, upload.single("file"), async (req, res) => {
     console.log(req.file);
     if(!req.file && !req.file.filename)
