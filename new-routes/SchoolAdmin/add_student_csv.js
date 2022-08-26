@@ -41,26 +41,31 @@ router.options('/',(req,res)=>{
 
 router.post("/",verifyJWT, upload.single("file"), async (req, res) => {
     console.log(req.file);
-    if(!req.file && !req.file.filename)
+    if(!req.file && !req.file.filename){
+        console.log(1);
         return res.status(400).json({"error":"file not found"});
+    }
 
   if (!req.file.originalname.endsWith(".csv")) {
-    // deleteFile(); // To delete the CSV-file that was received from client
-
+console.log(2);
     return res.status(401).json({ error: "file type unsupported" });
   }
 
+  console.log(3);
   let decoded = jwt.decode(req.headers["auth-token"], { complete: true });
   let payload = decoded.payload;
 
+  console.log(4);
   if (!payload) return res.send("nope");
 
   let from_id = payload["id"];
 
+  console.log(5);
   //convert that csv to json
   let csvdata = await csvtojson().fromFile(req.file.path);
   console.log(csvdata);
 
+  console.log(6);
   //verify the csv structure by verifying one instance of that json
   if (!verifyObj(csvdata[0])) {
     // deleteFile(); // To delete the CSV-file that was received from client
@@ -68,6 +73,7 @@ router.post("/",verifyJWT, upload.single("file"), async (req, res) => {
     return res.status(401).json({ error: "invald headers" });
   }
 
+  console.log(7);
   csvdata.forEach(async (obj) => {
     console.log(obj);
     const a = new Student({
