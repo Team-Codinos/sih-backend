@@ -1,8 +1,8 @@
 const verifyJWT = require("../../verifyJWT");
-const multer = require('multer');
-const path = require('path');
+const multer = require("multer");
+const path = require("path");
 const filerequest = require("../../model/FileRequest/filerequest");
-const jwt=require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const csvtojson = require("csvtojson");
 const fs = require("fs");
 const Student = require("../../model/Student/Student");
@@ -17,37 +17,31 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     fileName = file.originalname;
-    cb(null, Date.now() + path.extname(file.originalname));
+    cb(null, fileName);
   },
 });
 
 function verifyObj(obj) {
-    if (
-      obj["past_marks"] &&
-      obj["school_id"] &&
-      obj["standard"] &&
-      obj["name"]
-    )
-      return true;
-    else return false;
-  }
-  
+  if (obj["past_marks"] && obj["school_id"] && obj["standard"] && obj["name"])
+    return true;
+  else return false;
+}
 
 const upload = multer({ storage });
 
-router.options('/',(req,res)=>{
-    res.send('hehe');
+router.options("/", (req, res) => {
+  res.send("hehe");
 });
 
-router.post("/",verifyJWT, upload.single("file"), async (req, res) => {
-    console.log(req.file);
-    if(!req.file && !req.file.filename){
-        console.log(1);
-        return res.status(400).json({"error":"file not found"});
-    }
+router.post("/", verifyJWT, upload.single("file"), async (req, res) => {
+    console.log(req.file.originalname);
+  if (!req.file && !req.file.filename) {
+    console.log(1);
+    return res.status(400).json({ error: "file not found" });
+  }
 
   if (!req.file.originalname.endsWith(".csv")) {
-console.log(2);
+    console.log(2);
     return res.status(401).json({ error: "file type unsupported" });
   }
 
