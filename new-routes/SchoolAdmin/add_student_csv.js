@@ -35,12 +35,12 @@ function verifyObj(obj) {
 
 const upload = multer({ storage });
 
-router.post("/", upload.single("file"), async (req, res) => {
+router.post("/",verifyJWT, upload.single("file"), async (req, res) => {
     console.log(req.file);
     if(!req.file && !req.file.filename)
         return res.status(400).json({"error":"file not found"});
 
-  if (!req.file.filename.endsWith(".csv")) {
+  if (!req.file.originalname.endsWith(".csv")) {
     // deleteFile(); // To delete the CSV-file that was received from client
 
     return res.status(401).json({ error: "file type unsupported" });
